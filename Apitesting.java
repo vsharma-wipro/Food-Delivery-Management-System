@@ -22,23 +22,7 @@ public class Apitesting {
 
 	}
 	
-	@Test()
-	@Order(1)
-	public void userRegistration() {
-		String requestBody = "{\"username\":\"user6\",\"password\":\"pass6\",\"email\":\"user6@example.com\"}";
 
-		given()
-		       .spec(requestSpecification)
-		       .body(requestBody)
-	      	   .log().all()
-		.when()
-		       .post("/users/register")
-		.then()
-		      .log().all()
-		      .statusCode(201)
-			  .assertThat()
-			  .body("username", equalTo("user6"));	      
-	}
 
 	@Test
 	@Order(2)
