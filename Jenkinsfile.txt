@@ -8,7 +8,7 @@ stage('Checkout') {
 
 steps {
 
-git 'https://github.com/your-repo/food-delivery.git'
+git 'https://github.com/vsharma-wipro/Food-Delivery-Management-System.git'
 
 }
 
@@ -49,6 +49,36 @@ stage('Deploy to Staging') {
 steps {
 
 sh './deploy.sh staging'
+
+}
+
+}
+
+stage('Staging Tests') {
+
+steps {
+
+sh './run-staging-tests.sh'
+
+}
+
+}
+
+stage('Deploy to Production') {
+
+when {
+
+expression {
+
+return currentBuild.result == null || currentBuild.result == 'SUCCESS'
+
+}
+
+}
+
+steps {
+
+sh './deploy.sh production'
 
 }
 
